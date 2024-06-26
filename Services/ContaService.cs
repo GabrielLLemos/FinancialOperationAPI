@@ -36,7 +36,13 @@ namespace FinancialOperationAPI.Services
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var conta = _contaRepository.GetById(id);
+
+            if (conta == null)
+            {
+                throw new ArgumentException("Conta não encontrada.");
+            }
+            _contaRepository.Delete(id);
         }
 
         public Conta Sacar(Guid id, double valor)
